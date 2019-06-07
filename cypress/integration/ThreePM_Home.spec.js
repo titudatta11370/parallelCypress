@@ -42,17 +42,6 @@ describe('Login test case', function () {
             cy.get('#auth-continue-button').click()
             cy.get('#Password').type(password)
             cy.get('#auth-submit-button').click()
-
-
-            cy.server()
-            cy.route({
-                method : 'POST',
-                url : '/Auth/Login',
-                response : '{"loging":"success"}',
-                status : 302
-            })
-
-
         })
 
         it('redirects to /dashboard on success', function () {
