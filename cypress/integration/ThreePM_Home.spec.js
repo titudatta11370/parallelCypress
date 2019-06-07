@@ -84,7 +84,7 @@ describe('Login test case', function () {
 
         it('user should be able to quesitonnaires outstanding and go to 3pm details page', function () {
             cy.get("#thirdPartyTilesContainer").contains("Questionnaires Outstanding").click();
-            cy.get('.ui-jqgrid-btable').contains('td').click();
+            cy.get('.ui-widget-content').contains('td').click();
             cy.contains('At a Glance').should('be.visible')
 
         });

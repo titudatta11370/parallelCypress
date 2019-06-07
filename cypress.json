@@ -7,7 +7,7 @@
   "pageLoadTimeout" : 180000,
   "execTimeout" : 20000,
   "requestTimeout" : 10000,
-  "defaultCommandTimeout" : 30000,
+  "defaultCommandTimeout" : 15000,
   "env": {
     "qa": "https://insightqa.exiger.com",
     "stage": "https://insightstaging.exiger.com"
