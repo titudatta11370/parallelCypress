@@ -50,7 +50,8 @@ describe('Login test case', function () {
         });
 
         it('should have six right navigation panel', function () {
-            cy.get('#thirdPartyTilesContainer').find('li').should('have.length', 6)
+
+            cy.wait(2000).get('#thirdPartyTilesContainer').find('li').should('have.length', 6)
 
         });
         it('should be able to sign off', function () {
@@ -62,6 +63,21 @@ describe('Login test case', function () {
             cy.get(".dashboard-section-metrics").should('be.visible')
 
         });
+    });
+    context('Home page functionalities', function () {
+        beforeEach(function () {
+            cy.get('#UserName').type(username);
+            cy.get('#auth-continue-button').click();
+            cy.get('#Password').type(password);
+            cy.get('#auth-submit-button').click()
 
+        });
+
+        it('user should be able to quesitonnaires outstanding and go to 3pm details page', function () {
+            cy.get("#thirdPartyTilesContainer").contains("Questionnaires Outstanding").click();
+            cy.get('.ui-jqgrid-btable').contains('td').click()
+            cy.contains('At a Glance').should('be.visible')
+
+        });
     })
 });
