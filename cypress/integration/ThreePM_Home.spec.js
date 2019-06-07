@@ -28,11 +28,10 @@ describe('Login test case', function () {
 
     context('Successful login', function () {
 
+
         beforeEach(function () {
-            beforeEach(function () {
-                cy.visit(Cypress.config().baseUrl);
-                cy.wait(1000)
-            });
+            cy.visit(Cypress.config().baseUrl);
+            cy.wait(1000);
 
             cy.get('#UserName').type(username);
             cy.get('#auth-continue-button').click();
@@ -71,12 +70,10 @@ describe('Login test case', function () {
         });
     });
     context('Home page functionalities', function () {
-        beforeEach(function () {
 
-            beforeEach(function () {
-                cy.visit(Cypress.config().baseUrl);
-                cy.wait(1000)
-            });
+        beforeEach(function () {
+            cy.visit(Cypress.config().baseUrl);
+            cy.wait(1000);
 
             cy.get('#UserName').type(username);
             cy.get('#auth-continue-button').click();
@@ -87,7 +84,7 @@ describe('Login test case', function () {
 
         it('user should be able to quesitonnaires outstanding and go to 3pm details page', function () {
             cy.get("#thirdPartyTilesContainer").contains("Questionnaires Outstanding").click();
-            cy.get('.ui-jqgrid-btable').contains('td').click()
+            cy.get('.ui-jqgrid-btable').contains('td').click();
             cy.contains('At a Glance').should('be.visible')
 
         });
