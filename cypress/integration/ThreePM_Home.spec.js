@@ -32,6 +32,7 @@ describe('Login test case', function () {
             cy.get('#auth-continue-button').click();
             cy.get('#Password').type(password);
             cy.get('#auth-submit-button').click()
+
         });
 
 
