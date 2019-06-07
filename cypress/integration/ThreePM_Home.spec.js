@@ -49,11 +49,11 @@ describe('Login test case', function () {
             cy.document().contains("Order Status").should('not.be.visible')
         });
 
-        it('should have six right navigation panel', function () {
-
-            cy.wait(2000).get('#thirdPartyTilesContainer').find('li').should('have.length', 6)
-
-        });
+        // it('should have six right navigation panel', function () {
+        //
+        //     cy.wait(2000).get('#thirdPartyTilesContainer').find('li').should('have.length', 6)
+        //
+        // });
         it('should be able to sign off', function () {
             cy.contains('Log Off').click({force: true});
             cy.contains('Username').should('be.visible')
