@@ -7,6 +7,7 @@ describe('Login test case', function () {
     context('Unsuccessful login', function () {
         beforeEach(function () {
             cy.visit(Cypress.config().baseUrl)
+            cy.wait(1000)
         })
 
         it('displays errors on login for incorrect username/password', function () {
@@ -56,7 +57,7 @@ describe('Login test case', function () {
 
         it('redirects to /dashboard on success', function () {
 
-            cy.contains('Dashboard')
+            cy.document().contains('Dashboard')
         })
 
         it('Clicking and closing right nav panel', function () {
@@ -71,5 +72,10 @@ describe('Login test case', function () {
             cy.get('#thirdPartyTilesContainer').find('li').should('have.length', 6)
 
         })
+        it('should be able to sign off', function () {
+            cy.contains('Log Off').click({force : true})
+            cy.contains('Username').should('be.visible')
+
+        });
     })
 })
