@@ -1,14 +1,15 @@
 describe('Login test case', function () {
-    beforeEach(function () {
-        cy.visit(Cypress.config().baseUrl);
-        cy.wait(1000)
-    });
+
 
     const username = 'support3@exiger.com';
     const password = 'Admin1234$';
 
 
     context('Unsuccessful login', function () {
+        beforeEach(function () {
+            cy.visit(Cypress.config().baseUrl);
+            cy.wait(1000)
+        });
 
         it('displays errors on login for incorrect username/password', function () {
             // incorrect username on purpose
@@ -28,6 +29,11 @@ describe('Login test case', function () {
     context('Successful login', function () {
 
         beforeEach(function () {
+            beforeEach(function () {
+                cy.visit(Cypress.config().baseUrl);
+                cy.wait(1000)
+            });
+
             cy.get('#UserName').type(username);
             cy.get('#auth-continue-button').click();
             cy.get('#Password').type(password);
@@ -49,11 +55,11 @@ describe('Login test case', function () {
             cy.document().contains("Order Status").should('not.be.visible')
         });
 
-        // it('should have six right navigation panel', function () {
-        //
-        //     cy.wait(2000).get('#thirdPartyTilesContainer').find('li').should('have.length', 6)
-        //
-        // });
+        it('should have six right navigation panel', function () {
+
+            cy.wait(2000).get('#thirdPartyTilesContainer').find('li').should('have.length', 6)
+
+        });
         it('should be able to sign off', function () {
             cy.contains('Log Off').click({force: true});
             cy.contains('Username').should('be.visible')
@@ -66,6 +72,12 @@ describe('Login test case', function () {
     });
     context('Home page functionalities', function () {
         beforeEach(function () {
+
+            beforeEach(function () {
+                cy.visit(Cypress.config().baseUrl);
+                cy.wait(1000)
+            });
+
             cy.get('#UserName').type(username);
             cy.get('#auth-continue-button').click();
             cy.get('#Password').type(password);
