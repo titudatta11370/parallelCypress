@@ -1,0 +1,11 @@
+{
+  "projectId": "kvnqa1",
+  "viewportWidth": 1280,
+  "viewportHeight": 1024,
+  "responseTimeout": 20000,
+  "baseUrl": "https://insightstaging.exiger.com",
+  "env": {
+    "qa": "https://insightqa.exiger.com",
+    "stage": "https://insightstaging.exiger.com"
+  }
+}
