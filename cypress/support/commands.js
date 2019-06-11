@@ -11,6 +11,8 @@
 
 // -- This is a parent command --
 Cypress.Commands.add("login", (email, password) => {
+    const baseURL = Cypress.env("stage").url;
+
     cy.visit(baseURL);
     cy.wait(1000);
 
