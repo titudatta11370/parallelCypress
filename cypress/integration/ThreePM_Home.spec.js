@@ -3,6 +3,7 @@ describe('Login test case', function () {
     const baseURL = Cypress.env("stage").url;
 
 
+
     // context('Unsuccessful login', function () {
     //     beforeEach(function () {
     //         cy.visit(baseURL);
@@ -72,22 +73,29 @@ describe('Login test case', function () {
     context('Home page functionalities', function () {
 
         beforeEach(function () {
-            cy.visit(baseURL);
-            cy.wait(1000);
-
-            cy.get('#UserName').type(Cypress.env('user'));
-            cy.get('#auth-continue-button').click();
-            cy.get('#Password').type(Cypress.env('pass'));
-            cy.get('#auth-submit-button').click()
+            cy.login(Cypress.env('user'), Cypress.env('pass'))
+            // Cypress.loing(Cypress.env('user'), Cypress.env('pass'))
+            //
+            // cy.visit(baseURL);
+            // cy.wait(1000);
+            //
+            // cy.get('#UserName').type(Cypress.env('user'));
+            // cy.get('#auth-continue-button').click();
+            // cy.get('#Password').type(Cypress.env('pass'));
+            // cy.get('#auth-submit-button').click()
 
         });
 
         it('user should be able to click on quesitonnaires outstanding ' +
             'and go to 3pm details page', function () {
             cy.get("#thirdPartyTilesContainer").contains("Questionnaires Outstanding").click();
+            Cypress.log('Clicking on a questionnaire outstanding')
             cy.contains('Questionnaire Sent').click({force: true})
             cy.contains('At a Glance').should('be.visible')
 
+        });
+        it('should ', function () {
+            
         });
     })
 });

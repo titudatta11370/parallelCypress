@@ -7,12 +7,20 @@
 // commands please read more here:
 // https://on.cypress.io/custom-commands
 // ***********************************************
-//
-//
+
+
 // -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
-//
-//
+Cypress.Commands.add("login", (email, password) => {
+    cy.visit(baseURL);
+    cy.wait(1000);
+
+    cy.get('#UserName').type(email);
+    cy.get('#auth-continue-button').click();
+    cy.get('#Password').type(password);
+    cy.get('#auth-submit-button').click()
+     })
+
+
 // -- This is a child command --
 // Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
 //
