@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b373ea08-21b6-4a43-92f8-a3d1189b3b4d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/cypress.json" beforeDir="false" afterPath="$PROJECT_DIR$/cypress.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cypress/integration/ThreePM_Home.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/ThreePM_Home.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/support/commands.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/support/commands.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cypress/support/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/support/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,8 +41,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cypress/integration/ThreePM_Home.spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+            <state relative-caret-position="802">
+              <caret line="80" column="3" lean-forward="true" selection-start-line="80" selection-start-column="3" selection-end-line="80" selection-end-column="3" />
               <folding>
                 <element signature="e#138#835#0" />
               </folding>
@@ -173,7 +170,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14898000" />
+    <option name="totallyTimeSpent" value="16263000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-223" y="-1046" width="1361" height="1046" extended-state="0" />
@@ -214,18 +211,6 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/cypress/integration/ThreePM_Home.spec.js</url>
-          <line>43</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.gitignore">
@@ -278,8 +263,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cypress/integration/ThreePM_Home.spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+        <state relative-caret-position="802">
+          <caret line="80" column="3" lean-forward="true" selection-start-line="80" selection-start-column="3" selection-end-line="80" selection-end-column="3" />
           <folding>
             <element signature="e#138#835#0" />
           </folding>

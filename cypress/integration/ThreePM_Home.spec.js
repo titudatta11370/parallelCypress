@@ -2,8 +2,6 @@ describe('Login test case', function () {
 
     const baseURL = Cypress.env("stage").url;
 
-
-
     context('Unsuccessful login', function () {
         before(function () {
             cy.visit(baseURL);
@@ -59,11 +57,9 @@ describe('Login test case', function () {
         it('Clicking and closing right nav panel', function () {
 
             cy.get("#thirdPartyTilesContainer").contains("Questionnaires Outstanding").click();
-            cy.get("#thirdPartyTilesContainer").contains("Questionnaires Outstanding").click();
-            cy.document().contains('Close').should('not.be.visible')
-            // cy.get('#gview_jqDrawerGrid').should('not.be.visible')
-
-            cy.wait(1000)
+            cy.contains("Questionnaire Sent")
+            cy.get('#thirdPartyTilesDrawer').contains('Close').click({force: true});
+            cy.get('#gview_jqDrawerGrid').should('not.be.visible')
 
         })
     });
@@ -80,9 +76,6 @@ describe('Login test case', function () {
             cy.contains('Questionnaire Sent').click({force: true})
             cy.contains('At a Glance').should('be.visible')
 
-        });
-        it('should ', function () {
-            
         });
     })
 });
