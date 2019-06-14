@@ -5,7 +5,7 @@ describe('Login test case', function () {
 
 
     context('Unsuccessful login', function () {
-        beforeEach(function () {
+        before(function () {
             cy.visit(baseURL);
             cy.wait(1000)
         });
@@ -28,75 +28,55 @@ describe('Login test case', function () {
     context('Successful login', function () {
 
 
-        before(function () {
-            cy.visit(baseURL);
-            cy.wait(1000);
-
-            cy.get('#UserName').type(Cypress.env('user'));
-            cy.get('#auth-continue-button').click();
-            cy.get('#Password').type(Cypress.env('pass'));
-            cy.get('#auth-submit-button').click()
+        beforeEach(function () {
+            cy.login()
 
         });
-
-        beforeEach(function () {
-            // before each test, we can automatically preserve the
-            // 'session_id' and 'remember_token' cookies. this means they
-            // will not be cleared before the NEXT test starts.
-            //
-            // the name of your cookies will likely be different
-            // this is just a simple example
-            Cypress.Cookies.preserveOnce('session_id', 'remember_token')
-        })
-
 
         it('redirects to /dashboard on success', function () {
 
             cy.document().contains('Dashboard')
-        });
+        })
 
-        it('Clicking and closing right nav panel', function () {
 
-            cy.get("#thirdPartyTilesContainer").contains("Questionnaires Outstanding").click();
-            cy.document().contains("Order Status");
-            cy.get('#thirdPartyTilesDrawer').contains('Close').click({force: true});
-            cy.document().contains("Order Status").should('not.be.visible')
-        });
 
         it('should have six right navigation panel', function () {
-
             cy.get('#thirdPartyTilesContainer').
             find('li').
             should('have.length', 6)
 
-        });
+        })
         it('should be able to sign off', function () {
             cy.contains('Log Off').click({force: true});
             cy.contains('Username').should('be.visible')
 
-        });
+        })
         it('should have the dashboard section metrics', function () {
             cy.get(".dashboard-section-metrics").should('be.visible')
 
-        });
+        })
+
+        it('Clicking and closing right nav panel', function () {
+
+            cy.get("#thirdPartyTilesContainer").contains("Questionnaires Outstanding").click();
+            cy.get("#thirdPartyTilesContainer").contains("Questionnaires Outstanding").click();
+            cy.document().contains('Close').should('not.be.visible')
+            // cy.get('#gview_jqDrawerGrid').should('not.be.visible')
+
+            cy.wait(1000)
+
+        })
     });
     context('Home page functionalities', function () {
 
         beforeEach(function () {
-            cy.visit(baseURL);
-            cy.wait(1000);
-
-            cy.get('#UserName').type(Cypress.env('user'));
-            cy.get('#auth-continue-button').click();
-            cy.get('#Password').type(Cypress.env('pass'));
-            cy.get('#auth-submit-button').click()
+            cy.login()
 
         });
 
         it('user should be able to click on quesitonnaires outstanding ' +
             'and go to 3pm details page', function () {
             cy.get("#thirdPartyTilesContainer").contains("Questionnaires Outstanding").click();
-            Cypress.log('Clicking on a questionnaire outstanding')
             cy.contains('Questionnaire Sent').click({force: true})
             cy.contains('At a Glance').should('be.visible')
 

@@ -3,7 +3,7 @@
   "viewportWidth": 1280,
   "viewportHeight": 1024,
   "responseTimeout": 30000,
-  "baseUrl": "https://insightstaging.exiger.com",
+  "baseUrl": "https://insightstaging.exiger.com/Auth/Login",
   "pageLoadTimeout": 180000,
   "execTimeout": 20000,
   "requestTimeout": 10000,
@@ -16,7 +16,7 @@
       "url": "https://insightqa.exiger.com"
     },
     "stage": {
-      "url": "https://insightstaging.exiger.com"
+      "url": "https://insightstaging.exiger.com/Auth/Login"
     }
   }
 }
