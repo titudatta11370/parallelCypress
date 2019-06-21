@@ -1,81 +1,46 @@
-describe('Login test case', function () {
+import Chance from 'chance';
+// Instantiate Chance so it can be used
+const chance = new Chance();
 
-    const baseURL = Cypress.env("stage").url;
+describe('Home page functionalities', function () {
 
-    context('Unsuccessful login', function () {
-        before(function () {
-            cy.visit(baseURL);
-            cy.wait(1000)
-        });
+    beforeEach(function () {
+        cy.login()
 
-        it('displays errors on login for incorrect username/password', function () {
-            // incorrect username on purpose
-
-            cy.get('#UserName').type('Test');
-            cy.get('#auth-continue-button').click();
-            cy.get('#Password').type('password123{enter}');
-            cy.get('#auth-submit-button').click();
-            // we should have visible errors now
-            cy.contains('The username or password you entered is incorrect');
-
-            // and still be on the same URL
-            cy.url().should('include', '/Auth/Login')
-        });
     });
 
-    context('Successful login', function () {
+    it('user should be able to click on quesitonnaires outstanding ' +
+        'and go to 3pm details page', function () {
+        cy.get("#thirdPartyTilesContainer").contains("Questionnaires Outstanding").click();
+        cy.contains('Questionnaire Sent').click({force: true});
+        cy.contains('At a Glance').should('be.visible')
 
-
-        beforeEach(function () {
-            cy.login()
-
-        });
-
-        it('redirects to /dashboard on success', function () {
-
-            cy.document().contains('Dashboard')
-        })
-
-
-
-        it('should have six right navigation panel', function () {
-            cy.get('#thirdPartyTilesContainer').
-            find('li').
-            should('have.length', 6)
-
-        })
-        it('should be able to sign off', function () {
-            cy.contains('Log Off').click({force: true});
-            cy.contains('Username').should('be.visible')
-
-        })
-        it('should have the dashboard section metrics', function () {
-            cy.get(".dashboard-section-metrics").should('be.visible')
-
-        })
-
-        it('Clicking and closing right nav panel', function () {
-
-            cy.get("#thirdPartyTilesContainer").contains("Questionnaires Outstanding").click();
-            cy.contains("Questionnaire Sent")
-            cy.get('#thirdPartyTilesDrawer').contains('Close').click({force: true});
-            cy.get('#gview_jqDrawerGrid').should('not.be.visible')
-
-        })
     });
-    context('Home page functionalities', function () {
+    it('should be able to create a thirdParty for Exiger Express', function () {
 
-        beforeEach(function () {
-            cy.login()
+        cy.contains('Create Third-Party').click();
+        cy.get('#ClientAccountId').should('be.visible');
+        cy.selectFirstItem('#ClientAccountId');
+        cy.contains(' Company Third-Party').click();
+        cy.get('input[typeaheadname="CompanyName"]').type(chance.company());
+        cy.contains("Continue").click();
+        if (window.top.Cypress) {
+        }
+        // cy.contains("Continue").click()
+        cy.get('.btn-next-step').click();
+        cy.contains('Exiger Express').click();
+        cy.get('#SurveyRecipientFirstName-0').type(chance.name({first: true}));
+        cy.get('#SurveyRecipientLastName-0').type(chance.name({last: true}));
+        cy.get('#SurveyRecipientEmailAddress-0').type(chance.email());
+        cy.get('.btn-next-step').click();
+        cy.get('#submitOrderButton').click();
+        cy.get('#coreDetailsForm').should('be.visible')
+    });
 
-        });
+    it('clicking on monitoring alert should take user to monitor page and should be available ', function () {
+        cy.get("#thirdPartyTilesContainer").contains("Unread Monitoring Alerts").click();
+        cy.get('.event-row').should('be.visible')
 
-        it('user should be able to click on quesitonnaires outstanding ' +
-            'and go to 3pm details page', function () {
-            cy.get("#thirdPartyTilesContainer").contains("Questionnaires Outstanding").click();
-            cy.contains('Questionnaire Sent').click({force: true})
-            cy.contains('At a Glance').should('be.visible')
+    });
 
-        });
-    })
 });

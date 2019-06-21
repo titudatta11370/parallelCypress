@@ -1,19 +1,23 @@
 {
-  "projectId": "kvnqa1",
+  "projectId": "insight3pm",
   "viewportWidth": 1280,
   "viewportHeight": 1024,
-  "responseTimeout": 30000,
-  "baseUrl": "https://insightstaging.exiger.com/Auth/Login",
+  "responseTimeout": 20000,
+  "baseUrl": "https://insightqa.exiger.com/Auth/Login",
   "pageLoadTimeout": 180000,
   "execTimeout": 20000,
   "requestTimeout": 10000,
   "defaultCommandTimeout": 15000,
 
   "env": {
-    "user": "support3@exiger.com",
-    "pass": "Admin1234$",
+    "stageUser": "support3@exiger.com",
+    "stagePass": "Admin1234$",
+    "qaUser" : "manager@brightlineqa.com",
+    "qaPass" : "Admin1234$",
+
+
     "qa": {
-      "url": "https://insightqa.exiger.com"
+      "url": "https://insightqa.exiger.com/Auth/Login"
     },
     "stage": {
       "url": "https://insightstaging.exiger.com/Auth/Login"

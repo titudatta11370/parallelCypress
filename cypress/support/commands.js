@@ -1,15 +1,17 @@
 Cypress.Commands.add("login", () => {
-    const baseURL = Cypress.env("stage").url;
-    const userName = Cypress.env('user')
-    const passWord = Cypress.env('pass')
-
-    cy.visit(baseURL);
-    // cy.wait(1000);
-    cy.url().should('eq', baseURL)
-    cy.get('#UserName').type(userName);
+    cy.visit("")
+    cy.get('#UserName').type(Cypress.env('qaUser'));
     cy.get('#auth-continue-button').click();
-    cy.get('#Password').type(passWord);
+    cy.get('#Password').type(Cypress.env('qaPass'));
     cy.get('#auth-submit-button').click()
+})
+
+Cypress.Commands.add("selectFirstItem", (selector) => {
+    cy.get(selector).then(($select) => {
+        const opt = $select.find('option')
+        $select.val(opt.attr('value'))
+        return $select
+    }).trigger('change')
 })
 
 
