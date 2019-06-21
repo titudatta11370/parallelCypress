@@ -1,8 +1,8 @@
 Cypress.Commands.add("login", () => {
     cy.visit("")
-    cy.get('#UserName').type(Cypress.env('qaUser'));
+    cy.get('#UserName').type(Cypress.env('stageUser'));
     cy.get('#auth-continue-button').click();
-    cy.get('#Password').type(Cypress.env('qaPass'));
+    cy.get('#Password').type(Cypress.env('stagePass'));
     cy.get('#auth-submit-button').click()
 })
 

@@ -7,22 +7,9 @@ jobs:
       - image: 'cypress/base:10'
         environment:
           TERM: xterm
-
     steps:
       - checkout
-      - run: npm install mocha --save-dev
-      - run: npm install --save-dev mochawesome
-      - run: npm install mochawesome-merge --save-dev
       - run: npm install chance --save-dev
-      - run: npm install mocha-circleci-reporter --save-dev
-
-      #          command: 'npm install mochawesome-merge --save-dev'
-#          name: update-npm
-#          command: 'sudo npm install mocha --save-dev'
-#          command: 'sudo npm install mocha-circleci-reporter --save-dev'
-#          command: 'sudo npm install --save-dev mochawesome'
-#          command: 'npm install mochawesome-merge --save-dev'
-#          command: 'sudo npm install chance --save-dev'
       - run: pwd
       - run: ls
       - restore_cache:
@@ -41,7 +28,7 @@ jobs:
           paths:
             - .cache
             - tmp
-  test:
+  test1:
     working_directory: ~/tmp
     docker:
       - image: 'cypress/base:10'
@@ -53,8 +40,26 @@ jobs:
       - run: ls -la cypress
       - run: ls -la cypress/integration
       - run:
-          name: Running cypress tests
-          command: $(npm bin)/cypress run
+          name: Running cypress tests 1
+          command: $(npm bin)/cypress run --spec cypress/integration/3pmLogin.spec.js
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
+  test2:
+    working_directory: ~/tmp
+    docker:
+      - image: 'cypress/base:10'
+        environment:
+          TERM: xterm
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: ls -la cypress
+      - run: ls -la cypress/integration
+      - run:
+          name: Running cypress tests 2
+          command: $(npm bin)/cypress run --spec cypress/integration/ThreePM_Home.spec.js
       - store_artifacts:
           path: cypress/videos
       - store_artifacts:
@@ -65,6 +70,9 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - test:
+      - test1:
+          requires:
+            - build
+      - test2:
           requires:
             - build
