@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - checkout
-      - run: sudo npm install mocha --save-dev
+      - run: npm install mocha --save-dev
 #          name: update-npm
 #          command: 'sudo npm install mocha --save-dev'
 #          command: 'sudo npm install mocha-circleci-reporter --save-dev'
