@@ -10,13 +10,13 @@ jobs:
 
     steps:
       - checkout
-      - run:
+      - run: sudo npm install mocha --save-dev
 #          name: update-npm
-          command: 'sudo npm install mocha --save-dev'
-          command: 'sudo npm install mocha-circleci-reporter --save-dev'
-          command: 'sudo npm install --save-dev mochawesome'
-          command: 'npm install mochawesome-merge --save-dev'
-          command: 'sudo npm install chance --save-dev'
+#          command: 'sudo npm install mocha --save-dev'
+#          command: 'sudo npm install mocha-circleci-reporter --save-dev'
+#          command: 'sudo npm install --save-dev mochawesome'
+#          command: 'npm install mochawesome-merge --save-dev'
+#          command: 'sudo npm install chance --save-dev'
       - run: pwd
       - run: ls
       - restore_cache:
