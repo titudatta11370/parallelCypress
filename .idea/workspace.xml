@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b373ea08-21b6-4a43-92f8-a3d1189b3b4d" name="Default Changelist" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cypress/integration/3pmLogin.spec.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cypress/screenshots/AutoLogin_spec.js/The Dashboard Page -- logs in programmatically without using the UI (failed).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cypress/screenshots/ThreePM_Home.js/Login test case -- Successful login -- redirects to dashboard on success (failed).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cypress/videos/AutoLogin_spec.js.mp4" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cypress/videos/ThreePM_Home.js.mp4" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cypress/videos/interaction_spec.js.mp4" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.circleci/config.yml" afterPath="$PROJECT_DIR$/.circleci/config.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cypress.json" afterPath="$PROJECT_DIR$/cypress.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cypress/integration/ThreePM_Home.spec.js" afterPath="$PROJECT_DIR$/cypress/integration/ThreePM_Home.spec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cypress/support/commands.js" afterPath="$PROJECT_DIR$/cypress/support/commands.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -81,11 +72,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
               <caret line="3" column="5" lean-forward="true" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.yml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.circleci/config.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="495">
+              <caret line="34" column="16" lean-forward="true" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -111,13 +112,13 @@
       <list>
         <option value="$PROJECT_DIR$/cypress/integration/ThreePM_Home.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/.circleci/config.yml" />
         <option value="$PROJECT_DIR$/cypress/support/index.js" />
         <option value="$PROJECT_DIR$/cypress.json" />
         <option value="$PROJECT_DIR$/cypress/support/commands.js" />
         <option value="$PROJECT_DIR$/cypress/integration/3pmLogin.spec.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/cypress/integration/ThreePM_Home.spec.js" />
+        <option value="$PROJECT_DIR$/.circleci/config.yml" />
       </list>
     </option>
   </component>
@@ -151,6 +152,11 @@
             <path>
               <item name="CypressParallel" type="b2602c69:ProjectViewProjectNode" />
               <item name="CypressParallel" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CypressParallel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CypressParallel" type="462c0819:PsiDirectoryNode" />
+              <item name=".circleci" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CypressParallel" type="b2602c69:ProjectViewProjectNode" />
@@ -342,13 +348,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.circleci/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="24" column="29" lean-forward="true" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cypress.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -398,6 +397,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="5" lean-forward="true" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.circleci/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="34" column="16" lean-forward="true" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
           <folding />
         </state>
       </provider>

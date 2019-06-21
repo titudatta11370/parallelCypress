@@ -7,8 +7,16 @@ jobs:
       - image: 'cypress/base:10'
         environment:
           TERM: xterm
+
     steps:
       - checkout
+      - run:
+          name: update-npm
+          command: 'sudo npm install mocha --save-dev'
+          command: 'sudo npm install mocha-circleci-reporter --save-dev'
+          command: 'sudo npm install --save-dev mochawesome'
+          command: 'npm install mochawesome-merge --save-dev'
+          command: 'sudo npm install chance --save-dev'
       - run: pwd
       - run: ls
       - restore_cache:
