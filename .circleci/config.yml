@@ -11,7 +11,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: update-npm
+#          name: update-npm
           command: 'sudo npm install mocha --save-dev'
           command: 'sudo npm install mocha-circleci-reporter --save-dev'
           command: 'sudo npm install --save-dev mochawesome'
