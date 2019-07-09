@@ -5,11 +5,11 @@ const chance = new Chance();
 describe('Login test case', function () {
 
 
-    const baseURL = Cypress.env("stage").url;
+    // const baseURL = Cypress.env("prod").url;
 
     context('Unsuccessful login', function () {
         before(function () {
-            cy.visit(baseURL);
+            cy.visit("")
             cy.wait(1000)
         });
 
@@ -64,5 +64,6 @@ describe('Login test case', function () {
             cy.get('#gview_jqDrawerGrid').should('not.be.visible')
 
         })
+        
     });
 });

@@ -2,25 +2,29 @@
   "projectId": "insight3pm",
   "viewportWidth": 1280,
   "viewportHeight": 1024,
-  "responseTimeout": 20000,
-  "baseUrl": "https://insightstaging.exiger.com/Auth/Login",
-  "pageLoadTimeout": 180000,
+  "responseTimeout": 15000,
+  "baseUrl": "https://insightqa.exiger.com/Auth/Login",
+  "pageLoadTimeout": 15000,
   "execTimeout": 20000,
   "requestTimeout": 10000,
-  "defaultCommandTimeout": 15000,
+  "defaultCommandTimeout": 20000,
 
   "env": {
     "stageUser": "support3@exiger.com",
     "stagePass": "Admin1234$",
     "qaUser" : "manager@brightlineqa.com",
     "qaPass" : "Admin1234$",
-
+    "prodUser" : "tdatta@exiger.com",
+    "prodPass" : "Admin123!!!!",
 
     "qa": {
       "url": "https://insightqa.exiger.com/Auth/Login"
     },
     "stage": {
       "url": "https://insightstaging.exiger.com/Auth/Login"
+    },
+    "prod": {
+      "url": "https://insight.exiger.com/Auth/Login"
     }
   }
 }
