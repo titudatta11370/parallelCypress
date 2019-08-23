@@ -28,9 +28,7 @@ jobs:
           paths:
             - .cache
             - tmp
-
-    steps:
-      - checkout
+            
       - run: npm install
       - run: mkdir ~/junit
       - run:
