@@ -3,7 +3,7 @@
   "viewportWidth": 1280,
   "viewportHeight": 1024,
   "responseTimeout": 15000,
-  "baseUrl": "https://insightqa.exiger.com/Auth/Login",
+  "baseUrl": "https://insightqa.exiger.com",
   "pageLoadTimeout": 15000,
   "execTimeout": 20000,
   "requestTimeout": 10000,
@@ -18,13 +18,13 @@
     "prodPass" : "Admin123!!!!",
 
     "qa": {
-      "url": "https://insightqa.exiger.com/Auth/Login"
+      "url": "https://insightqa.exiger.com"
     },
     "stage": {
-      "url": "https://insightstaging.exiger.com/Auth/Login"
+      "url": "https://insightstaging.exiger.com"
     },
     "prod": {
-      "url": "https://insight.exiger.com/Auth/Login"
+      "url": "https://insight.exiger.com"
     }
   }
 }

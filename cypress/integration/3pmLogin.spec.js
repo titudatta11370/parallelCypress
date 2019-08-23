@@ -30,40 +30,19 @@ describe('Login test case', function () {
 
     context('Successful login', function () {
 
-
         beforeEach(function () {
             cy.login()
 
         });
 
         it('redirects to /dashboard on success', function () {
-
             cy.document().contains('Dashboard')
         });
 
-
-        it('should have six right navigation panel', function () {
-            cy.get('#thirdPartyTilesContainer').find('li').should('have.length', 6)
-
-        });
         it('should be able to sign off', function () {
             cy.contains('Log Off').click({force: true});
             cy.contains('Username').should('be.visible')
 
         });
-        it('should have the dashboard section metrics', function () {
-            cy.get(".dashboard-section-metrics").should('be.visible')
-
-        });
-
-        it('Clicking and closing right nav panel', function () {
-
-            cy.get("#thirdPartyTilesContainer").contains("Questionnaires Outstanding").click();
-            cy.contains("Questionnaire Sent");
-            cy.get('#thirdPartyTilesDrawer').contains('Close').click({force: true});
-            cy.get('#gview_jqDrawerGrid').should('not.be.visible')
-
-        })
-        
     });
 });
