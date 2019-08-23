@@ -1,34 +1,96 @@
 version: 2
+
 jobs:
-  test:
+  build:
+    working_directory: ~/tmp
     docker:
-      - image: cypress/base:10
+      - image: 'cypress/base:10'
+        environment:
+          TERM: xterm
     steps:
       - checkout
-      # restore folders with npm dependencies and Cypress binary
+      - run: npm install chance --save-dev
+      - run: pwd
+      - run: ls
       - restore_cache:
           keys:
-            - cache-{{ checksum "package.json" }}
-      # install npm dependencies and Cypress binary
-      # if they were cached, this step is super quick
-      - run:
-          name: Install dependencies
-          command: npm ci
-      - run: npm run cy:verify
-      # save npm dependencies and Cypress binary for future runs
+            - 'v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}'
+            - 'v2-deps-{{ .Branch }}-'
+            - v2-deps-
+      - run: npm ci
       - save_cache:
-          key: cache-{{ checksum "package.json" }}
+          key: 'v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}'
           paths:
             - ~/.npm
             - ~/.cache
-      # start server before starting tests
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - .cache
+            - tmp
+
+    steps:
+      - checkout
+      - run: npm install
+      - run: mkdir ~/junit
       - run:
-          command: npm run start:ci
-          background: true
-      - run: npm run e2e:record
+          command: mocha test --reporter mocha-junit-reporter
+          environment:
+            MOCHA_FILE: ~/junit/test-results.xml
+          when: always
+      - store_test_results:
+          path: ~/junit
+      - store_artifacts:
+          path: ~/junit 
+
+    
+
+          
+  test1:
+    working_directory: ~/tmp
+    docker:
+      - image: 'cypress/base:10'
+        environment:
+          TERM: xterm
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: ls -la cypress
+      - run: ls -la cypress/integration
+      - run:
+          name: Running cypress tests 1
+          command: $(npm bin)/cypress run --spec cypress/integration/3pmLogin.spec.js
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
+  test2:
+    working_directory: ~/tmp
+    docker:
+      - image: 'cypress/base:10'
+        environment:
+          TERM: xterm
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: ls -la cypress
+      - run: ls -la cypress/integration
+      - run:
+          name: Running cypress tests 2
+          command: $(npm bin)/cypress run --spec cypress/integration/ThreePM_Home.spec.js
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
 
 workflows:
   version: 2
-  build:
+  build_and_test:
     jobs:
-      - test
+      - build
+      - test1:
+          requires:
+            - build
+      - test2:
+          requires:
+            - build
