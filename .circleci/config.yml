@@ -1,78 +1,86 @@
-version: 2
+# testing using CircleCI orb
+# see https://on.cypress.io/circleci-orb
+
+# for non-orb configuration see old commit
+# https://github.com/cypress-io/cypress-example-kitchensink/blob/aabb10cc1bb9dee88e1bf28e0af5e9661427ee7a/circle.yml
+
+# to use CircleCI orbs need to use version >= 2.1
+version: 2.1
+orbs:
+  # use Cypress orb from CircleCI registry
+  cypress: cypress-io/cypress@1.8.0
+
+executors:
+  mac:
+    macos:
+      xcode: "10.1.0"
 
 jobs:
-  build:
-    working_directory: ~/tmp
-    docker:
-      - image: 'cypress/base:10'
-        environment:
-          TERM: xterm
-    steps:
-      - checkout
-      - run: npm install chance --save-dev
-      - run: pwd
-      - run: ls
-      - restore_cache:
-          keys:
-            - 'v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}'
-            - 'v2-deps-{{ .Branch }}-'
-            - v2-deps-
-      - run: npm ci
-      - save_cache:
-          key: 'v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}'
-          paths:
-            - ~/.npm
-            - ~/.cache
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - .cache
-            - tmp
-  test1:
-    working_directory: ~/tmp
-    docker:
-      - image: 'cypress/base:10'
-        environment:
-          TERM: xterm
+  release:
+    executor: cypress/base-10
     steps:
       - attach_workspace:
           at: ~/
-      - run: ls -la cypress
-      - run: ls -la cypress/integration
-      - run:
-          name: Running cypress tests 1
-          command: $(npm bin)/cypress run --spec cypress/integration/3pmLogin.spec.js
-      - store_artifacts:
-          path: cypress/videos
-      - store_artifacts:
-          path: cypress/screenshots
-  test2:
-    working_directory: ~/tmp
-    docker:
-      - image: 'cypress/base:10'
-        environment:
-          TERM: xterm
-    steps:
-      - attach_workspace:
-          at: ~/
-      - run: ls -la cypress
-      - run: ls -la cypress/integration
-      - run:
-          name: Running cypress tests 2
-          command: $(npm bin)/cypress run --spec cypress/integration/ThreePM_Home.spec.js
-      - store_artifacts:
-          path: cypress/videos
-      - store_artifacts:
-          path: cypress/screenshots
+      - run: npm run semantic-release
 
 workflows:
-  version: 2
-  build_and_test:
+  mac-build:
     jobs:
-      - build
-      - test1:
+      # split into install + test jobs when Mac caching is correct
+      # https://github.com/cypress-io/circleci-orb/issues/98
+      - cypress/run:
+          name: Mac test
+          executor: mac
+          build: 'npm run build'
+          start: 'npm run start:ci'
+          record: true
+          group: 'Mac build'
+
+  linux-build:
+    jobs:
+      # checks out code and installs dependencies once
+      - cypress/install:
+          name: 'Linux install'
+          # and builds the app using this command
+          build: 'npm run build'
+
+      # runs on 3 machines, load balances tests
+      # and records on Cypress Dashboard
+      - cypress/run:
+          # name this job because we are running "cypress/run" several times
+          # with different parameters
+          name: '3 machines'
+          # job will use workspace with code and dependencies
+          # installed by the "install" job
           requires:
-            - build
-      - test2:
+            - Linux install
+          record: true # record results on Cypress dashboard
+          parallel: true # load balance all tests
+          parallelism: 3 # across 3 machines
+          group: '3x-electron on CircleCI' # name this group
+          start: 'npm run start:ci' # start server before running tests
+
+      # run on 2 machines using Chrome browser
+      - cypress/run:
+          name: '2 machines using Chrome'
+          # job will use workspace with code and dependencies
+          # installed by the "install" job
           requires:
-            - build
+            - Linux install
+          # use executor with Chrome installed
+          executor: cypress/browsers-chrome69
+          # use browser "chrome" for running tests
+          browser: chrome
+          record: true
+          parallel: true
+          parallelism: 2
+          group: '2x-chrome on CircleCI'
+          start: 'npm run start:ci'
+
+      - release:
+          filters:
+            branches:
+              only:
+                - master
+          requires:
+            - 3 machines
