@@ -30,6 +30,16 @@ Cypress.Commands.add("login", () => {
     })
 })
 
+Cypress.Commands.add("loginUsingApp", () => {
+      cy.visit("")
+      cy.get('#UserName').type('manager@brightlineqa.com')
+      cy.get('#auth-continue-button').click()
+      cy.get('#Password').type('Admin1234$')
+      cy.get('#auth-submit-button').click()
+})
+
+
+
 Cypress.Commands.add("MonitoringLogin", () => {
   cy.request('/')
   .its("body")

@@ -5,8 +5,6 @@ const chance = new Chance();
 describe('Login test case', function () {
 
 
-    // const baseURL = Cypress.env("prod").url;
-
     context('Unsuccessful login', function () {
         before(function () {
             cy.visit("")
@@ -31,8 +29,7 @@ describe('Login test case', function () {
     context('Successful login', function () {
 
         beforeEach(function () {
-            cy.login()
-
+            cy.loginUsingApp()
         });
 
         it('redirects to /dashboard on success', function () {
