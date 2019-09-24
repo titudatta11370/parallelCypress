@@ -1,10 +1,12 @@
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@1.0.0
+  cypress: cypress-io/cypress@1
 workflows:
   build:
     jobs:
-    pre-steps:
-            - run: npm install chance --save-dev
+      - cypress/install:
+          pre-steps:
+            - run: 'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc'
       - cypress/run:
-          executor: cypress/base-8
+          requires:
+            - cypress/install
