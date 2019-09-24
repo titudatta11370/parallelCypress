@@ -5,6 +5,6 @@ workflows:
   build:
     jobs:
     pre-steps:
-            - run: 'npm install chance --save-dev'
+            - run: npm install chance --save-dev
       - cypress/run:
           executor: cypress/base-8
