@@ -1,11 +1,5 @@
 {
 
-  "reporter": "junit",
-  "reporterOptions": {
-    "mochaFile": "results/cypress-report.xml",
-    "toConsole": true,
-
-
   "projectId": "insight3pm",
   "viewportWidth": 1280,
   "viewportHeight": 1024,
