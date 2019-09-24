@@ -4,7 +4,6 @@ orbs:
 workflows:
   build:
     jobs:
-    - cypress/install:
     pre-steps:
             - run: 'npm install chance --save-dev'
       - cypress/run:
