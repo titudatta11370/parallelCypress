@@ -1,5 +1,9 @@
 version: 2
 jobs:
+- cypress/install:
+          pre-steps:
+            - run: 'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc'
+            - run: npm install chance --save-dev
   build:
     docker:
       - image: cypress/base:8
