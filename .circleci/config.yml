@@ -1,94 +1,11 @@
-version: 2
-
-jobs:
-  build:
-    working_directory: ~/tmp
-    docker:
-      - image: 'cypress/base:10'
-        environment:
-          TERM: xterm
-    steps:
-      - checkout
-      - run: npm install chance --save-dev
-      - run: pwd
-      - run: ls
-      - restore_cache:
-          keys:
-            - 'v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}'
-            - 'v2-deps-{{ .Branch }}-'
-            - v2-deps-
-      - run: npm ci
-      - save_cache:
-          key: 'v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}'
-          paths:
-            - ~/.npm
-            - ~/.cache
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - .cache
-            - tmp
-            
-      - run: npm install
-      - run: mkdir ~/junit
-      - run:
-          command: mocha test --reporter mocha-junit-reporter
-          environment:
-            MOCHA_FILE: ~/junit/test-results.xml
-          when: always
-      - store_test_results:
-          path: ~/junit
-      - store_artifacts:
-          path: ~/junit 
-
-    
-
-          
-  test1:
-    working_directory: ~/tmp
-    docker:
-      - image: 'cypress/base:10'
-        environment:
-          TERM: xterm
-    steps:
-      - attach_workspace:
-          at: ~/
-      - run: ls -la cypress
-      - run: ls -la cypress/integration
-      - run:
-          name: Running cypress tests 1
-          command: $(npm bin)/cypress run --spec cypress/integration/3pmLogin.spec.js
-      - store_artifacts:
-          path: cypress/videos
-      - store_artifacts:
-          path: cypress/screenshots
-  test2:
-    working_directory: ~/tmp
-    docker:
-      - image: 'cypress/base:10'
-        environment:
-          TERM: xterm
-    steps:
-      - attach_workspace:
-          at: ~/
-      - run: ls -la cypress
-      - run: ls -la cypress/integration
-      - run:
-          name: Running cypress tests 2
-          command: $(npm bin)/cypress run --spec cypress/integration/ThreePM_Home.spec.js
-      - store_artifacts:
-          path: cypress/videos
-      - store_artifacts:
-          path: cypress/screenshots
-
+version: 2.1
+orbs:
+  # "cypress-io/cypress@1" installs the latest published
+  # version "1.x.y" of the orb. We recommend you then use
+  # the strict explicit version "cypress-io/cypress@1.x.y"
+  # to lock the version and prevent unexpected CI changes
+  cypress: cypress-io/cypress@1
 workflows:
-  version: 2
-  build_and_test:
+  build:
     jobs:
-      - build
-      - test1:
-          requires:
-            - build
-      - test2:
-          requires:
-            - build
+      - cypress/run # "run" job comes from "cypress" orb
