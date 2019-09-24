@@ -4,6 +4,6 @@ orbs:
 workflows:
   build:
     jobs:
-      - run: npm install chance --save-dev
+      - npm install chance --save-dev
       - cypress/run:
           executor: cypress/base-8
