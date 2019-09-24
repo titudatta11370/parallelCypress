@@ -1,9 +1,9 @@
 version: 2.1
 orbs:
   cypress: cypress-io/cypress@1.0.0
+  chance: npm i chance
 workflows:
   build:
     jobs:
-      - npm install chance --save-dev
       - cypress/run:
           executor: cypress/base-8
