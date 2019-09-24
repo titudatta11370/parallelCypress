@@ -30,6 +30,7 @@ Cypress.Commands.add("login", () => {
     })
 })
 
+
 Cypress.Commands.add("loginUsingApp", () => {
       cy.visit("")
       cy.get('#UserName').type('manager@brightlineqa.com')
