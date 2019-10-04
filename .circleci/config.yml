@@ -9,6 +9,8 @@ executors:
       xcode: "10.1.0"
 
 jobs:
+release:
+    executor: installing chance
     steps:
       - run: npm install chance      
 
