@@ -1,3 +1,4 @@
+require('cypress-plugin-retries')
 import './commands'
 
 Cypress.on('uncaught:exception', (err, runnable) => {

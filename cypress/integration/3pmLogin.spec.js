@@ -1,6 +1,7 @@
 import Chance from 'chance';
 // Instantiate Chance so it can be used
 const chance = new Chance();
+Cypress.env('RETRIES', 2)
 
 describe('Login test case', function () {
 
@@ -9,8 +10,11 @@ describe('Login test case', function () {
         before(function () {
             cy.visit("")
             cy.wait(1000)
+            Cypress.env('RETRIES', 2)
+
         });
 
+        
         it('displays errors on login for incorrect username/password', function () {
             // incorrect username on purpose
 

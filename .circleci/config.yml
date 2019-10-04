@@ -4,16 +4,22 @@ orbs:
 workflows:
   build:
     jobs:
-      - cypress/install:
-      pre-steps:
-            - run: 'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc'
-            - run: npm install chance --save-dev
-          build: 'npm run build'  # run a custom app build step
-      - cypress/run:
-          requires:
-            - cypress/install
-          record: true        # record results on Cypress Dashboard
-          parallel: true      # split all specs across machines
-          parallelism: 4      # use 4 CircleCI machines to finish quickly
-          group: 'all tests'  # name this group "all tests" on the dashboard
-          start: 'npm start' 
+  # give any name to job
+  4x-electron:
+    # use Cypress built Docker image with Node 10 and npm 6
+    docker:
+      - image: cypress/base:10
+    # tells CircleCI to execute this job on 4 machines simultaneously
+    parallelism: 4
+    steps:
+      - checkout
+      # note: omitting caching for brevity
+      # quickly install NPM dependencies
+      - npm ci
+      # load balance all tests across 4 CI machines
+      - $(npm bin)/cypress run --parallel
+
+
+
+
+          

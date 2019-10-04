@@ -19,6 +19,8 @@ describe('Home page functionalities', function () {
         cy.get('#third-party-details-tabs-container').contains('Monitoring').click()
         cy.get('.loading > img').should('not.be.visible')
 
+
+        cy.log("making sure user can confirm/unconfirm");
         // making sure user can confirm/unconfirm
         cy.get(':nth-child(1) > .event-row > .event-row-cell > .confirm').click({force:true})
         cy.get('#action-comment').type('Test')
@@ -29,7 +31,7 @@ describe('Home page functionalities', function () {
         cy.get('#modalDialogConfirmButton').click()
         
 
-        //making sure user can escalate/descalate
+        cy.log("making sure user can escalate/descalate");
         cy.wait(2000)
         cy.get(':nth-child(1) > .event-row > .event-row-cell > .escalate').click({force:true})
         cy.get('#action-comment').type('Test')
@@ -42,6 +44,7 @@ describe('Home page functionalities', function () {
 
 
         //making sure user can Remove/Add
+        cy.log("making sure user can Remove/Add");
         cy.wait(2000)
         cy.get(':nth-child(1) > .event-row > .event-row-cell > .adjudicate').click({force:true})
         cy.get('#SelectedDDIQAdjudicationReasonCode').select('Duplicate')
@@ -55,6 +58,7 @@ describe('Home page functionalities', function () {
 
 
         //making sure user can add messages
+        cy.log("making sure user can add messages");
         cy.wait(2000)
         cy.get(':nth-child(1) > .event-row > .event-row-cell > .comment').click({force:true})
         cy.get('#action-comment').type('Test')

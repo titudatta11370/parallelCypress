@@ -1,7 +1,7 @@
 import Chance from 'chance';
 // Instantiate Chance so it can be used
 const chance = new Chance();
-describe('Home page functionalities', function () {
+describe('Third Parties Page Spec', function () {
 
     beforeEach(function () {
         cy.login()
@@ -15,7 +15,7 @@ describe('Home page functionalities', function () {
     });
 
     it('NEW insight DDIQ should be working fine', function(){
-        cy.visit("/Order/Details/118199")
+        cy.visit("/Order/Details/123209")
         cy.get('#ddiqTab').click()
         cy.get('#insight-ddiq').should('be.visible')
     });
