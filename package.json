@@ -1,7 +1,7 @@
 {
   "name": "cypress-playground",
   "version": "1.0.0",
-  "description": "",
+  "description": "## installation",
   "main": "index.js",
   "scripts": {
     "build": "npm run lint && npm run types && npm run stop-only",
@@ -18,7 +18,20 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cypress": "^3.1.0",
-    "pushstate-server": "^3.0.1"
-  }
+    "chance": "1.1.0",
+    "cypress": "^3.4.1",
+    "pushstate-server": "^3.0.1",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "mocha": "^6.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titudatta11370/parallelCypress.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titudatta11370/parallelCypress/issues"
+  },
+  "homepage": "https://github.com/titudatta11370/parallelCypress#readme"
 }
