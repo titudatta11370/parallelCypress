@@ -1,12 +1,16 @@
 version: 2.1
 orbs:
   # use Cypress orb from CircleCI registry
-  cypress: cypress-io/cypress@1.8.0
+  cypress: cypress-io/cypress@1.10.0
 
 executors:
   mac:
     macos:
       xcode: "10.1.0"
+
+jobs:
+    steps:
+      - run: npm install chance      
 
 jobs:
   release:
@@ -16,6 +20,7 @@ jobs:
           at: ~/
       - run: npm run semantic-release
 
+  
 workflows:
   mac-build:
     jobs:
