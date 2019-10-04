@@ -18,13 +18,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chance": "1.1.0",
-    "cypress": "^3.4.1",
-    "pushstate-server": "^3.0.1",
-    "winston": "^3.2.1"
-  },
-  "devDependencies": {
-    "mocha": "^6.2.0"
+    "cypress": "^3.1.0",
+    "pushstate-server": "^3.0.1"
   },
   "repository": {
     "type": "git",
