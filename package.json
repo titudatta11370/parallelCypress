@@ -18,7 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cypress": "^3.1.0",
+    "cypress": "^4.8.0",
     "pushstate-server": "^3.0.1"
   },
   "repository": {
@@ -28,5 +28,9 @@
   "bugs": {
     "url": "https://github.com/titudatta11370/parallelCypress/issues"
   },
-  "homepage": "https://github.com/titudatta11370/parallelCypress#readme"
+  "homepage": "https://github.com/titudatta11370/parallelCypress#readme",
+  "devDependencies": {
+    "chance": "^1.1.6",
+    "cypress-plugin-retries": "^1.5.2"
+  }
 }
