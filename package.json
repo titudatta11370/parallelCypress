@@ -21,8 +21,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cypress": "^3.1.0",
-    "pushstate-server": "^3.0.1",
+    "cypress": "^12.3.0",
+    "pushstate-server": "^3.1.0",
     "chance": "latest"
   },
   "devDependencies": {
